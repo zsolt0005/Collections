@@ -208,6 +208,33 @@ class ReadOnlyArrayList implements IteratorAggregate
     return $this->firstNullableKey() ?? throw new NotFoundException();
   }
 
+  /**
+   * last key in the array. <br>
+   * <b>If not found</b> return {@see null}.
+   *
+   * @return int|string|null
+   */
+  public function lastNullableKey(): int|string|null
+  {
+    $keys = array_keys($this->array);
+
+    return !empty($keys)
+      ? $keys[count($keys) - 1]
+      : null;
+  }
+
+  /**
+   * Last key in the array. <br>
+   * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return int|string
+   * @throws NotFoundException
+   */
+  public function lastKey(): int|string
+  {
+    return $this->lastNullableKey() ?? throw new NotFoundException();
+  }
+
   // Last
   // FirstIndex
   // LastIndex
