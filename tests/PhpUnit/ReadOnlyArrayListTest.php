@@ -164,4 +164,19 @@ final class ReadOnlyArrayListTest extends TestCase
 
     self::assertFalse($arrayList->hasKey('c'));
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getKeys
+   */
+  public function testGetKeys(): void
+  {
+    $values = [0, 1, 'a' => 1];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame([0, 1, 'a'], $arrayList->getKeys());
+  }
 }

@@ -148,8 +148,15 @@ class ReadOnlyArrayList implements IteratorAggregate
     return isset($this->array[$key]);
   }
 
-  // HasKey
-  // GetKeys
+  /**
+   * Gets all the existing keys.
+   *
+   * @return TKey[]
+   */
+  public function getKeys(): array
+  {
+    return array_keys($this->array);
+  }
 
   // Contains
   // Find
