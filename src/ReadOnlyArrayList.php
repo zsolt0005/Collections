@@ -5,6 +5,7 @@ namespace Zsolt\Collections;
 use ArrayIterator;
 use IteratorAggregate;
 use Zsolt\Collections\Exceptions\NotFoundException;
+use Zsolt\Collections\Traits\ArrayListTrait;
 
 /**
  * Read only array list.
@@ -31,44 +32,7 @@ class ReadOnlyArrayList implements IteratorAggregate
     $this->array = $values;
   }
 
-  /**
-   * Create an empty {@see ReadOnlyArrayList}.
-   *
-   * @return self<int|string, mixed>
-   */
-  public static function empty(): self
-  {
-    return new self();
-  }
-
-  /**
-   * Create {@see ReadOnlyArrayList} from values.
-   *
-   * @template TValues
-   * @param TValues ...$values
-   *
-   * @return self<int|string, TValues>
-   */
-  public static function fromValues(mixed ...$values): self
-  {
-    return new self(...$values);
-  }
-
-  /**
-   * Create {@see ReadOnlyArrayList} from array.
-   *
-   * @template TArray
-   * @param TArray[] $array
-   *
-   * @return self<int|string, TArray>
-   */
-  public static function fromArray(array $array): self
-  {
-    $instance = new self();
-    $instance->array = $array;
-
-    return $instance;
-  }
+  use ArrayListTrait;
 
   /**
    * Get the array representation of the {@see ReadOnlyArrayList}. <br>

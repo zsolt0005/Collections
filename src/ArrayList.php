@@ -2,6 +2,8 @@
 
 namespace Zsolt\Collections;
 
+use Zsolt\Collections\Traits\ArrayListTrait;
+
 /**
  * Array list.
  *
@@ -24,44 +26,7 @@ class ArrayList extends ReadOnlyArrayList
     parent::__construct(...$values);
   }
 
-  /**
-   * Create an empty {@see ArrayList}.
-   *
-   * @return self<int|string, mixed>
-   */
-  public static function empty(): self
-  {
-    return new self();
-  }
-
-  /**
-   * Create {@see ArrayList} from values.
-   *
-   * @template TValues
-   * @param TValues ...$values
-   *
-   * @return self<int|string, TValues>
-   */
-  public static function fromValues(mixed ...$values): self
-  {
-    return new self(...$values);
-  }
-
-  /**
-   * Create {@see ArrayList} from array.
-   *
-   * @template TArray
-   * @param TArray[] $array
-   *
-   * @return self<int|string, TArray>
-   */
-  public static function fromArray(array $array): self
-  {
-    $instance = new self();
-    $instance->array = $array;
-
-    return $instance;
-  }
+  use ArrayListTrait;
 
   /**
    * Adds a new value.
