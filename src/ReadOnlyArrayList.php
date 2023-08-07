@@ -167,7 +167,20 @@ class ReadOnlyArrayList implements IteratorAggregate
    */
   public function contains(mixed $value): bool
   {
-    return in_array($value, $this->array);
+    return in_array($value, $this->array, true);
+  }
+
+  /**
+   * Index of the given value if exists, <b>{@see null}</b> otherwise.
+   *
+   * @param TValue $value
+   *
+   * @return int|string|null
+   */
+  public function indexOf(mixed $value): int|string|null
+  {
+    $index = array_search($value, $this->array, true);
+    return $index === false ? null : $index;
   }
 
   // Find
@@ -178,7 +191,6 @@ class ReadOnlyArrayList implements IteratorAggregate
   // FirstIndex
   // LastIndex
   // ForEach
-  // IndexOf
 
   // Sorted
   // Reversed

@@ -213,4 +213,23 @@ final class ReadOnlyArrayListTest extends TestCase
 
     self::assertTrue($arrayList->contains($class1));
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::indexOf
+   */
+  public function testIndexOf(): void
+  {
+    $values = [1, 2, 3, 'a' => 4];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(null, $arrayList->indexOf(0));
+    self::assertSame(0, $arrayList->indexOf(1));
+    self::assertSame(1, $arrayList->indexOf(2));
+    self::assertSame(2, $arrayList->indexOf(3));
+    self::assertSame('a', $arrayList->indexOf(4));
+  }
 }
