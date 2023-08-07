@@ -2,6 +2,7 @@
 
 namespace Zsolt\Collections;
 
+use Zsolt\Collections\Exceptions\NotFoundException;
 use Zsolt\Collections\Traits\ArrayListTrait;
 
 /**
@@ -74,10 +75,37 @@ class ArrayList extends ReadOnlyArrayList
     $this->array = [];
   }
 
+  /**
+   * Removes the first element. <br>
+   * <b>If empty,</b> fails with <b>{@see NotFoundException}</b>. <br>
+   *
+   * <b>Caution!</b> After removing an element of the array, the values keep the original keys. So if we remove an element
+   *  with the index of 0, the first element will have an index of 1.
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function removeFirst(): void
+  {
+    $firstKey = $this->firstKey();
+    unset($this->array[$firstKey]);
+  }
+
+  /**
+   * Removes the last element. <br>
+   * <b>If empty,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function removeLast(): void
+  {
+    $firstKey = $this->lastKey();
+    unset($this->array[$firstKey]);
+  }
+
   // Remove
   // RemoveRange
   // RemoveByKey
   // RemoveByKeys
-  // RemoveFirst
-  // RemoveLast
 }

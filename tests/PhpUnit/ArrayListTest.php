@@ -5,6 +5,7 @@ namespace Zsolt\Collections\Tests;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use Zsolt\Collections\ArrayList;
+use Zsolt\Collections\Exceptions\NotFoundException;
 
 /**
  * Tests for {@see ArrayList}.
@@ -114,5 +115,79 @@ final class ArrayListTest extends TestCase
     $toArray = $arrayList->toArray();
 
     self::assertSame([], $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::removeFirst
+   */
+  public function testRemoveFirst(): void
+  {
+    $testData = [5, 10, 15];
+    $expected = [1 => 10, 2 => 15];
+
+    $arrayList = ArrayList::fromArray($testData);
+    $arrayList->removeFirst();
+
+    $toArray = $arrayList->toArray();
+
+    self::assertSame($expected, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::removeFirst
+   */
+  public function testRemoveFirstEmpty(): void
+  {
+    $testData = [];
+
+    $arrayList = ArrayList::fromArray($testData);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->removeFirst();
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::removeLast
+   */
+  public function testRemoveLast(): void
+  {
+    $testData = [5, 10, 15];
+    $expected = [5, 10];
+
+    $arrayList = ArrayList::fromArray($testData);
+    $arrayList->removeLast();
+
+    $toArray = $arrayList->toArray();
+
+    self::assertSame($expected, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::removeLast
+   */
+  public function testRemoveLastEmpty(): void
+  {
+    $testData = [];
+
+    $arrayList = ArrayList::fromArray($testData);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->removeLast();
   }
 }
