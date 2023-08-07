@@ -2,6 +2,7 @@
 
 namespace Zsolt\Collections\PhpStan;
 
+use Zsolt\Collections\Exceptions\NotFoundException;
 use Zsolt\Collections\ReadOnlyArrayList;
 
 /**
@@ -16,6 +17,7 @@ final class ReadOnlyArrayListTest extends ATest
    * Test case.
    *
    * @return void
+   * @throws NotFoundException
    */
   public function testCreateNewInstance(): void
   {
@@ -28,6 +30,7 @@ final class ReadOnlyArrayListTest extends ATest
    * Test case.
    *
    * @return void
+   * @throws NotFoundException
    */
   public function testCreateFromValues(): void
   {
@@ -40,6 +43,7 @@ final class ReadOnlyArrayListTest extends ATest
    * Test case.
    *
    * @return void
+   * @throws NotFoundException
    */
   public function testCreateFromArray(): void
   {
@@ -52,6 +56,7 @@ final class ReadOnlyArrayListTest extends ATest
    * Test case.
    *
    * @return void
+   * @throws NotFoundException
    */
   public function testCreateFromAssocArray(): void
   {

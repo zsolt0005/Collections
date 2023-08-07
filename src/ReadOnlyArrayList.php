@@ -4,6 +4,7 @@ namespace Zsolt\Collections;
 
 use ArrayIterator;
 use IteratorAggregate;
+use Zsolt\Collections\Exceptions\NotFoundException;
 
 /**
  * Read only array list.
@@ -114,7 +115,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    * Get the element at the given index. <br>
    * <b>If not found</b> return {@see null}.
    *
-   * @param TKey $index
+   * @param int|string $index
    *
    * @return TValue|null
    */
@@ -125,15 +126,16 @@ class ReadOnlyArrayList implements IteratorAggregate
 
   /**
    * Get the element at the given index. <br>
-   * <b>If not found</b> fails with <b>Undefined array key</b> warning message.
+   * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
    *
    * @param int|string $key
    *
    * @return TValue
+   * @throws NotFoundException
    */
   public function get(int|string $key): mixed
   {
-    return $this->array[$key];
+    return $this->getNullable($key) ?? throw new NotFoundException();
   }
 
   /**
@@ -183,10 +185,29 @@ class ReadOnlyArrayList implements IteratorAggregate
     return $index === false ? null : $index;
   }
 
-  // Find
-  // FindAll
-  // FindIndex
-  // First
+  /**
+   * First key in the array. <br>
+   * <b>If not found</b> return {@see null}.
+   *
+   * @return int|string|null
+   */
+  public function firstNullableKey(): int|string|null
+  {
+    return array_keys($this->array)[0] ?? null;
+  }
+
+  /**
+   * First key in the array. <br>
+   * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return int|string
+   * @throws NotFoundException
+   */
+  public function firstKey(): int|string
+  {
+    return $this->firstNullableKey() ?? throw new NotFoundException();
+  }
+
   // Last
   // FirstIndex
   // LastIndex

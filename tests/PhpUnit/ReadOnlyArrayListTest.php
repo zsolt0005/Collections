@@ -5,6 +5,7 @@ namespace Zsolt\Collections\Tests;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use Zsolt\Collections\Exceptions\NotFoundException;
 use Zsolt\Collections\ReadOnlyArrayList;
 
 /**
@@ -72,6 +73,71 @@ final class ReadOnlyArrayListTest extends TestCase
     $values = ['a' => 1, 'b' => 2];
     $arrayList = ReadOnlyArrayList::fromArray($values);
     self::assertSame($values, $arrayList->toArray());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::get
+   */
+  public function testGetExisting(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(1, $arrayList->get(0));
+    self::assertSame(2, $arrayList->get(1));
+    self::assertSame(3, $arrayList->get(2));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::get
+   */
+  public function testGetNonExisting(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->get(10);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullable
+   */
+  public function testGetNullableExisting(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(1, $arrayList->getNullable(0));
+    self::assertSame(2, $arrayList->getNullable(1));
+    self::assertSame(3, $arrayList->getNullable(2));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullable
+   */
+  public function testGetNullableNonExisting(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(null, $arrayList->getNullable(10));
   }
 
   /**
@@ -231,5 +297,96 @@ final class ReadOnlyArrayListTest extends TestCase
     self::assertSame(1, $arrayList->indexOf(2));
     self::assertSame(2, $arrayList->indexOf(3));
     self::assertSame('a', $arrayList->indexOf(4));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstKey
+   */
+  public function testFirstKeyInt(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(0, $arrayList->firstKey());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstKey
+   */
+  public function testFirstKeyString(): void
+  {
+    $values = ['a' => 1, 'b' => 2, 'c' => 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame('a', $arrayList->firstKey());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstKey
+   */
+  public function testFirstKeyNonExisting(): void
+  {
+    $values = [];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->firstKey();
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstNullableKey
+   */
+  public function testFirstNullableKeyInt(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(0, $arrayList->firstNullableKey());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstNullableKey
+   */
+  public function testFirstNullableKeyString(): void
+  {
+    $values = ['a' => 1, 'b' => 2, 'c' => 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame('a', $arrayList->firstNullableKey());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstNullableKey
+   */
+  public function testFirstNullableKeyNonExisting(): void
+  {
+    $values = [];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(null, $arrayList->firstNullableKey());
   }
 }
