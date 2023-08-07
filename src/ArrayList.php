@@ -49,19 +49,35 @@ class ArrayList extends ReadOnlyArrayList
    */
   public function addRange(mixed ...$values): void
   {
-    $this->array = [...$this->array, ...$values];
+    $this->array = array_merge($this->array, $values);
   }
 
+  /**
+   * Adds all entries from the give array.
+   *
+   * @param array<TKey, TValue> $array
+   *
+   * @return void
+   */
+  public function addArray(array $array): void
+  {
+    $this->array = array_merge($this->array, $array);
+  }
 
-  // addAt
-  // Clear
+  /**
+   * Clears all values.
+   *
+   * @return void
+   */
+  public function clear(): void
+  {
+    $this->array = [];
+  }
+
   // Remove
   // RemoveRange
-  // RemoveAt
-  // RemoveAtRange
+  // RemoveByKey
+  // RemoveByKeys
   // RemoveFirst
   // RemoveLast
-
-  // OVERRIDE Sorted
-  // OVERRIDE Reversed
 }

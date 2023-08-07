@@ -43,7 +43,7 @@ final class ArrayListTest extends TestCase
    * @throws Exception
    * @covers \Zsolt\Collections\ArrayList::addRange
    */
-  public function testAddAllValues(): void
+  public function testAddRangeIntKeysValues(): void
   {
     $testData = [5, 10, 15];
 
@@ -53,5 +53,66 @@ final class ArrayListTest extends TestCase
     $toArray = $arrayList->toArray();
 
     self::assertSame($testData, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::addRange
+   */
+  public function testAddRangeStringKeysValues(): void
+  {
+    $testData = ['a' => 1, 'b' => 2];
+    $addData = [3, 4];
+    $expected = ['a' => 1, 'b' => 2, 3, 4];
+
+    $arrayList = ArrayList::fromArray($testData);
+    $arrayList->addRange(...$addData);
+
+    $toArray = $arrayList->toArray();
+
+    self::assertSame($expected, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::addArray
+   */
+  public function testAddArray(): void
+  {
+    $testData = [5, 10, 15];
+    $testData2 = [20, 25];
+    $expected = [5, 10, 15, 20, 25];
+
+    $arrayList = ArrayList::fromArray($testData);
+    $arrayList->addArray($testData2);
+
+    $toArray = $arrayList->toArray();
+
+    self::assertSame($expected, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::clear
+   */
+  public function testClear(): void
+  {
+    $testData = [5, 10, 15];
+
+    $arrayList = ArrayList::fromArray($testData);
+    $arrayList->clear();
+
+    $toArray = $arrayList->toArray();
+
+    self::assertSame([], $toArray);
   }
 }
