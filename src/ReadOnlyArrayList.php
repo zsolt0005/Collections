@@ -127,14 +127,29 @@ class ReadOnlyArrayList implements IteratorAggregate
    * Get the element at the given index. <br>
    * <b>If not found</b> fails with <b>Undefined array key</b> warning message.
    *
-   * @param TKey $index
+   * @param int|string $key
    *
    * @return TValue
    */
-  public function get(int|string $index): mixed
+  public function get(int|string $key): mixed
   {
-    return $this->array[$index];
+    return $this->array[$key];
   }
+
+  /**
+   * Checks whether the given key exists.
+   *
+   * @param int|string $key
+   *
+   * @return bool
+   */
+  public function hasKey(int|string $key): bool
+  {
+    return isset($this->array[$key]);
+  }
+
+  // HasKey
+  // GetKeys
 
   // Contains
   // Find
@@ -146,6 +161,7 @@ class ReadOnlyArrayList implements IteratorAggregate
   // LastIndex
   // ForEach
   // IndexOf
+
   // Sorted
   // Reversed
 

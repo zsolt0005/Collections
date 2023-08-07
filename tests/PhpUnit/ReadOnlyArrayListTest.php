@@ -92,7 +92,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::toString
+   * @covers \Zsolt\Collections\ReadOnlyArrayList
    */
   public function testIsIterable(): void
   {
@@ -103,5 +103,65 @@ final class ReadOnlyArrayListTest extends TestCase
     {
       self::assertSame($values[$key], $value);
     }
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   */
+  public function testHasIntKey(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertTrue($arrayList->hasKey(0));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   */
+  public function testDoesNotHasIntKey(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertFalse($arrayList->hasKey(5));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   */
+  public function testHasStringKey(): void
+  {
+    $values = ['a' => 1, 'b' => 2];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertTrue($arrayList->hasKey('a'));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   */
+  public function testDoesNotStringIntKey(): void
+  {
+    $values = ['a' => 1, 'b' => 2];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertFalse($arrayList->hasKey('c'));
   }
 }
