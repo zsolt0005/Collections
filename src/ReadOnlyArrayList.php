@@ -235,9 +235,60 @@ class ReadOnlyArrayList implements IteratorAggregate
     return $this->lastNullableKey() ?? throw new NotFoundException();
   }
 
-  // Last
-  // FirstIndex
-  // LastIndex
+  /**
+   * Gets the first value. <br>
+   * <b>If not found</b> return {@see null}.
+   *
+   * @return TValue|null
+   */
+  public function getNullableFirst(): mixed
+  {
+    $firstKey = $this->firstNullableKey();
+
+    return $firstKey !== null
+      ? $this->array[$firstKey]
+      : null;
+  }
+
+  /**
+   * Gets the first value. <br>
+   * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return TValue
+   * @throws NotFoundException
+   */
+  public function getFirst(): mixed
+  {
+    return $this->getNullableFirst() ?? throw new NotFoundException();
+  }
+
+  /**
+   * Gets the last value. <br>
+   * <b>If not found</b> return {@see null}.
+   *
+   * @return TValue|null
+   */
+  public function getNullableLast(): mixed
+  {
+    $lastKey = $this->lastNullableKey();
+
+    return $lastKey !== null
+      ? $this->array[$lastKey]
+      : null;
+  }
+
+  /**
+   * Gets the last value. <br>
+   * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return TValue
+   * @throws NotFoundException
+   */
+  public function getLast(): mixed
+  {
+    return $this->getNullableLast() ?? throw new NotFoundException();
+  }
+
   // ForEach
 
   // Sorted

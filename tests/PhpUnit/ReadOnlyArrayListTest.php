@@ -420,4 +420,96 @@ final class ReadOnlyArrayListTest extends TestCase
 
     self::assertSame(null, $arrayList->lastNullableKey());
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirst
+   */
+  public function testGetFirstFound(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(1, $arrayList->getFirst());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirst
+   */
+  public function testGetFirstNotFound(): void
+  {
+    $values = [];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->getFirst();
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullableFirst
+   */
+  public function testGetNullableFirstNotFound(): void
+  {
+    $values = [];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(null, $arrayList->getNullableFirst());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLast
+   */
+  public function testGetLastFound(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(3, $arrayList->getLast());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLast
+   */
+  public function testGetLastNotFound(): void
+  {
+    $values = [];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->getLast();
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullableLst
+   */
+  public function testGetNullableLastNotFound(): void
+  {
+    $values = [];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertSame(null, $arrayList->getNullableLast());
+  }
 }
