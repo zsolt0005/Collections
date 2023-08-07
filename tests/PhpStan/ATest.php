@@ -20,6 +20,15 @@ abstract class ATest
   protected function setInt(int $value): void {}
 
   /**
+   * Test for int type.
+   *
+   * @param int|null $value
+   *
+   * @return void
+   */
+  protected function setNullableInt(?int $value): void {}
+
+  /**
    * Test for string type.
    *
    * @param string $value

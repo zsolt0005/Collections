@@ -82,4 +82,32 @@ final class ReadOnlyArrayListTest extends ATest
       $this->setInt($value);
     }
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function testGetFirst(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $this->setInt($arrayList->getFirst());
+    $this->setNullableInt($arrayList->getNullableFirst());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   */
+  public function testForeach(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $arrayList->foreach(fn($value) => $this->setInt($value));
+  }
 }

@@ -289,10 +289,37 @@ class ReadOnlyArrayList implements IteratorAggregate
     return $this->getNullableLast() ?? throw new NotFoundException();
   }
 
-  // ForEach
+  /**
+   * ForEach.
+   *
+   * @param callable(TValue): void $callback
+   *
+   * @return void
+   */
+  public function foreach(callable $callback): void
+  {
+    foreach($this->array as $value)
+    {
+      $callback($value);
+    }
+  }
 
-  // Sorted
-  // Reversed
+  /**
+   * ForEach with keys.
+   *
+   * @param callable(TKey, TValue): void $callback
+   *
+   * @return void
+   */
+  public function foreachWithKeys(callable $callback): void
+  {
+    foreach($this->array as $key => $value)
+    {
+      $callback($key, $value);
+    }
+  }
+
+  // ForEachReversed
 
   /**
    * Gets the internal array iterator.

@@ -512,4 +512,46 @@ final class ReadOnlyArrayListTest extends TestCase
 
     self::assertSame(null, $arrayList->getNullableLast());
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreach
+   */
+  public function testForeach(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $forEachArray = [];
+    $arrayList->foreach(function ($value) use (&$forEachArray)
+    {
+      $forEachArray[] = $value;
+    });
+
+    self::assertSame($values, $forEachArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachWithKeys
+   */
+  public function testForeachWithKeys(): void
+  {
+    $values = [1, 2, 3];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    /** @throws Exception */
+    $cb = function ($key, $value) use ($values)
+    {
+      self::assertSame($values[$key], $value);
+    };
+
+    $arrayList->foreachWithKeys($cb);
+  }
 }
