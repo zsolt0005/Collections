@@ -158,7 +158,18 @@ class ReadOnlyArrayList implements IteratorAggregate
     return array_keys($this->array);
   }
 
-  // Contains
+  /**
+   * Check if the value already exists.
+   *
+   * @param TValue $value
+   *
+   * @return bool
+   */
+  public function contains(mixed $value): bool
+  {
+    return in_array($value, $this->array);
+  }
+
   // Find
   // FindAll
   // FindIndex

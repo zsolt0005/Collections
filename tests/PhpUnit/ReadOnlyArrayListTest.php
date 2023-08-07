@@ -4,6 +4,7 @@ namespace Zsolt\Collections\Tests;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Zsolt\Collections\ReadOnlyArrayList;
 
 /**
@@ -178,5 +179,38 @@ final class ReadOnlyArrayListTest extends TestCase
     $arrayList = ReadOnlyArrayList::fromArray($values);
 
     self::assertSame([0, 1, 'a'], $arrayList->getKeys());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::contains
+   */
+  public function testContainsScalar(): void
+  {
+    $values = [0, 1, 2];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertTrue($arrayList->contains(1));
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::contains
+   */
+  public function testContainsReferenceType(): void
+  {
+    $class1 = new stdClass();
+    $class2 = new stdClass();
+
+    $values = [$class1, $class2];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    self::assertTrue($arrayList->contains($class1));
   }
 }
