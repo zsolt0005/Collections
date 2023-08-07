@@ -554,4 +554,48 @@ final class ReadOnlyArrayListTest extends TestCase
 
     $arrayList->foreachWithKeys($cb);
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachReversed
+   */
+  public function testForeachReversed(): void
+  {
+    $values = [1, 2, 3];
+    $valuesReversed = [3, 2, 1];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $forEachArray = [];
+    $arrayList->foreachReversed(function ($value) use (&$forEachArray)
+    {
+      $forEachArray[] = $value;
+    });
+
+    self::assertSame($valuesReversed, $forEachArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachWithKeysReversed
+   */
+  public function testForeachWithKeysReversed(): void
+  {
+    $values = ['a' => 1, 'b' => 2, 'c' => 3];
+    $valuesReversed = ['c' => 3, 'b' => 2, 'a' => 1];
+    $arrayList = ReadOnlyArrayList::fromArray($values);
+
+    $forEachArray = [];
+    $arrayList->foreachWithKeysReversed(function ($key, $value) use (&$forEachArray)
+    {
+      $forEachArray[$key] = $value;
+    });
+
+    self::assertSame($valuesReversed, $forEachArray);
+  }
 }

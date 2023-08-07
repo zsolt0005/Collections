@@ -319,7 +319,39 @@ class ReadOnlyArrayList implements IteratorAggregate
     }
   }
 
-  // ForEachReversed
+  /**
+   * ForEach <b>REVERSED</b>.
+   *
+   * @param callable(TValue): void $callback
+   *
+   * @return void
+   */
+  public function foreachReversed(callable $callback): void
+  {
+    $keys = $this->getKeys();
+    for($i = count($keys) - 1; $i >= 0; $i--)
+    {
+      $key = $keys[$i];
+      $callback($this->array[$key]);
+    }
+  }
+
+  /**
+   * ForEach with keys <b>REVERSED</b>.
+   *
+   * @param callable(TKey, TValue): void $callback
+   *
+   * @return void
+   */
+  public function foreachWithKeysReversed(callable $callback): void
+  {
+    $keys = $this->getKeys();
+    for($i = count($keys) - 1; $i >= 0; $i--)
+    {
+      $key = $keys[$i];
+      $callback($key, $this->array[$key]);
+    }
+  }
 
   /**
    * Gets the internal array iterator.
