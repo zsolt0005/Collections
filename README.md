@@ -8,9 +8,12 @@ Read more about the [Data Structures](https://www.geeksforgeeks.org/what-is-data
 
 ## Give a Star! ⭐
 If you like or are using this project please give it a star. Thanks!
+___
+
+## Docs
+**Coming soon**
 
 ## Features
-
 #### ReadOnlyArrayList
 Provides more elegant way to work with arrays. It's a **read-only** version of the **ArrayList**, it does not allow to manipulate
 with the data once it is created.
@@ -53,6 +56,25 @@ $arrayList->toString(); // [2, 3]
 
 #### Queue (Coming soon)
 ```php
+$queue = Queue::create(Type::int());
+$queue->enqueue(5);
+$queue->enqueue(4);
+$queue->enqueue(3);
+$queue->enqueue(2);
+
+$queue->dequeue(); // 5
+$queue->dequeue(); // 4
+$queue->peek(); // 3
+$queue->dequeue(); // 3
+
+$queue->isEmpty(); // false
+$queue->count(); // 2
+
+$queue->clear();
+
+$queue->isEmpty(); // true
+$queue->count(); // 0
+$queue->dequeue(); // null
 ```
 
 #### Stack (Coming soon)
