@@ -42,6 +42,24 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::prepend
+   */
+  public function testPrependValue(): void
+  {
+    $expected = [4, 1, 2, 3];
+    $arrayList = ArrayList::fromValues(1, 2, 3);
+    $arrayList->prepend(4);
+
+    $toArray = $arrayList->toArray();
+
+    self::assertSame($expected, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
    * @covers \Zsolt\Collections\ArrayList::addRange
    */
   public function testAddRangeIntKeysValues(): void
@@ -263,5 +281,101 @@ final class ArrayListTest extends TestCase
 
     $this->expectException(NotFoundException::class);
     $arrayList->remove(0);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::shift
+   */
+  public function testShiftExisting(): void
+  {
+    $testData = [1, 2, 3];
+
+    $arrayList = ArrayList::fromArray($testData);
+
+    self::assertSame(1, $arrayList->shift());
+    self::assertSame(2, $arrayList->shift());
+    self::assertSame(3, $arrayList->shift());
+    self::assertSame(0, $arrayList->count());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::shift
+   */
+  public function testShiftNotExisting(): void
+  {
+    $arrayList = ArrayList::fromArray([]);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->shift();
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::shiftNullable
+   */
+  public function testShiftNullableNotExisting(): void
+  {
+    $arrayList = ArrayList::fromArray([]);
+
+    self::assertSame(null, $arrayList->shiftNullable());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::pop
+   */
+  public function testPopExisting(): void
+  {
+    $testData = [1, 2, 3];
+
+    $arrayList = ArrayList::fromArray($testData);
+
+    self::assertSame(3, $arrayList->pop());
+    self::assertSame(2, $arrayList->pop());
+    self::assertSame(1, $arrayList->pop());
+    self::assertSame(0, $arrayList->count());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::pop
+   */
+  public function testPopNotExisting(): void
+  {
+    $arrayList = ArrayList::fromArray([]);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->pop();
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::popNullable
+   */
+  public function testPopNullableNotExisting(): void
+  {
+    $arrayList = ArrayList::fromArray([]);
+
+    self::assertSame(null, $arrayList->popNullable());
   }
 }

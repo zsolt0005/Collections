@@ -42,6 +42,18 @@ class ArrayList extends ReadOnlyArrayList
   }
 
   /**
+   * Adds a new value to the beginning.
+   *
+   * @param TValue $value
+   *
+   * @return void
+   */
+  public function prepend(mixed $value): void
+  {
+    array_unshift($this->array, $value);
+  }
+
+  /**
    * Adds multiple values.
    *
    * @param TValue ...$values
@@ -175,5 +187,51 @@ class ArrayList extends ReadOnlyArrayList
     {
       $this->remove($value);
     }
+  }
+
+  /**
+   * Returns the first element of the array **and removes it**. <br>
+   * <b>If not found,</b> returns <b>{@see null}</b>.
+   *
+   * @return TValue|null
+   */
+  public function shiftNullable(): mixed
+  {
+    return array_shift($this->array);
+  }
+
+  /**
+   * Returns the first element of the array **and removes it**. <br>
+   * <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return TValue
+   * @throws NotFoundException
+   */
+  public function shift(): mixed
+  {
+    return $this->shiftNullable() ?? throw new NotFoundException();
+  }
+
+  /**
+   * Returns the last element of the array **and removes it**. <br>
+   * <b>If not found,</b> returns <b>{@see null}</b>.
+   *
+   * @return TValue|null
+   */
+  public function popNullable(): mixed
+  {
+    return array_pop($this->array);
+  }
+
+  /**
+   * Returns the last element of the array **and removes it**. <br>
+   * <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @return TValue
+   * @throws NotFoundException
+   */
+  public function pop(): mixed
+  {
+    return $this->popNullable() ?? throw new NotFoundException();
   }
 }
