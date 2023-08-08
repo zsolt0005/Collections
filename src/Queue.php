@@ -85,11 +85,11 @@ class Queue
   }
 
   /**
-   * Count of the remaining items in the queue.
+   * Size of the remaining items in the queue.
    *
    * @return int
    */
-  public function count(): int
+  public function size(): int
   {
     return $this->list->size();
   }

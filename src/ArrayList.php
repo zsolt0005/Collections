@@ -3,7 +3,6 @@
 namespace Zsolt\Collections;
 
 use Zsolt\Collections\Exceptions\NotFoundException;
-use Zsolt\Collections\PhpStan\ReadOnlyArrayListTest;
 use Zsolt\Collections\Traits\ArrayListTrait;
 
 /**
