@@ -56,7 +56,7 @@ $arrayList->removeRange(5, 6);
 $arrayList->toString(); // [2, 3]
 ```
 
-#### Queue (Coming soon)
+#### Queue
 ```php
 $queue = Queue::create(Type::int());
 $queue->enqueue(5);
@@ -79,7 +79,7 @@ $queue->count(); // 0
 $queue->dequeue(); // null
 ```
 
-#### Stack (Coming soon)
+#### Stack
 ```php
 $stack = Stack::create(Type::int());
 $stack->push(5);
@@ -103,13 +103,5 @@ $stack->pop(); // null
 ```
 
 #### Dictionary (Coming soon)
-```php
-```
-
-#### LinkedList (Coming soon)
-```php
-```
-
-#### Tree (Coming soon)
 ```php
 ```
