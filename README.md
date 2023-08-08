@@ -18,3 +18,23 @@ If you like or are using this project please give it a star. Thanks!
 #### ArrayList
 ```php
 ```
+
+#### Queue (Coming soon)
+```php
+```
+
+#### Stack (Coming soon)
+```php
+```
+
+#### LinkedList (Coming soon)
+```php
+```
+
+#### Dictionary (Coming soon)
+```php
+```
+
+#### Tree (Coming soon)
+```php
+```
