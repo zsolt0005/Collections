@@ -6,7 +6,7 @@ use Zsolt\Collections\Exceptions\NotFoundException;
 use Zsolt\Collections\ReadOnlyArrayList;
 
 /**
- * Test PHPStan type detection for generics
+ * Test PHPStan type detection for generics.
  *
  * @package Zsolt\Collections\PhpStan
  * @author  Zsolt Döme
