@@ -80,27 +80,6 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::addRange
-   */
-  public function testAddRangeStringKeysValues(): void
-  {
-    $testData = ['a' => 1, 'b' => 2];
-    $addData = [3, 4];
-    $expected = ['a' => 1, 'b' => 2, 3, 4];
-
-    $arrayList = ArrayList::fromArray($testData);
-    $arrayList->addRange(...$addData);
-
-    $toArray = $arrayList->toArray();
-
-    self::assertSame($expected, $toArray);
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
-   * @throws Exception
    * @covers \Zsolt\Collections\ArrayList::addArray
    */
   public function testAddArray(): void
@@ -215,7 +194,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeByKey
+   * @covers \Zsolt\Collections\ArrayList::removeByIndex
    */
   public function testRemoveByExistingKey(): void
   {
@@ -224,7 +203,7 @@ final class ArrayListTest extends TestCase
 
     $arrayList = ArrayList::fromArray($testData);
 
-    $arrayList->removeByKey(1);
+    $arrayList->removeByIndex(1);
     $toArray = $arrayList->toArray();
 
     self::assertSame($expected, $toArray);
@@ -235,7 +214,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeByKey
+   * @covers \Zsolt\Collections\ArrayList::removeByIndex
    */
   public function testRemoveByNonExistingKey(): void
   {
@@ -244,7 +223,7 @@ final class ArrayListTest extends TestCase
     $arrayList = ArrayList::fromArray($testData);
 
     $this->expectException(NotFoundException::class);
-    $arrayList->removeByKey(3);
+    $arrayList->removeByIndex(3);
   }
 
   /**
@@ -300,7 +279,7 @@ final class ArrayListTest extends TestCase
     self::assertSame(1, $arrayList->shift());
     self::assertSame(2, $arrayList->shift());
     self::assertSame(3, $arrayList->shift());
-    self::assertSame(0, $arrayList->count());
+    self::assertSame(0, $arrayList->size());
   }
 
   /**
@@ -348,7 +327,7 @@ final class ArrayListTest extends TestCase
     self::assertSame(3, $arrayList->pop());
     self::assertSame(2, $arrayList->pop());
     self::assertSame(1, $arrayList->pop());
-    self::assertSame(0, $arrayList->count());
+    self::assertSame(0, $arrayList->size());
   }
 
   /**

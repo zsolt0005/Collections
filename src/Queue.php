@@ -12,7 +12,7 @@ namespace Zsolt\Collections;
  */
 class Queue
 {
-  /** @var ArrayList<int, TValue> Underlying array of the {@see Queue} data type. */
+  /** @var ArrayList<TValue> Underlying array of the {@see Queue} data type. */
   protected ArrayList $list;
 
   /**
@@ -23,7 +23,7 @@ class Queue
    */
   public function __construct(mixed $type)
   {
-    /** @var ArrayList<int, TValue> $emptyList */
+    /** @var ArrayList<TValue> $emptyList */
     $emptyList = ArrayList::empty($type);
 
     $this->list = $emptyList;
@@ -81,7 +81,7 @@ class Queue
    */
   public function isEmpty(): bool
   {
-    return $this->list->count() === 0;
+    return $this->list->size() === 0;
   }
 
   /**
@@ -91,7 +91,7 @@ class Queue
    */
   public function count(): int
   {
-    return $this->list->count();
+    return $this->list->size();
   }
 
   /**

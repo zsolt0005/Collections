@@ -11,9 +11,8 @@ use Zsolt\Collections\Traits\ArrayListTrait;
  * @package Zsolt\Collections
  * @author  Zsolt Döme
  *
- * @template TKey of int|string
  * @template TValue
- * @extends ReadOnlyArrayList<TKey, TValue>
+ * @extends ReadOnlyArrayList<TValue>
  */
 class ArrayList extends ReadOnlyArrayList
 {
@@ -68,7 +67,7 @@ class ArrayList extends ReadOnlyArrayList
   /**
    * Adds all entries from the give array.
    *
-   * @param array<TKey, TValue> $array
+   * @param array<int, TValue> $array
    *
    * @return void
    */
@@ -99,7 +98,7 @@ class ArrayList extends ReadOnlyArrayList
    */
   public function removeFirst(): void
   {
-    $firstKey = $this->firstKey();
+    $firstKey = $this->getFirstIndex();
     unset($this->array[$firstKey]);
   }
 
@@ -112,43 +111,43 @@ class ArrayList extends ReadOnlyArrayList
    */
   public function removeLast(): void
   {
-    $firstKey = $this->lastKey();
+    $firstKey = $this->getLastIndex();
     unset($this->array[$firstKey]);
   }
 
   /**
-   * Remove by key.
+   * Remove by index.
    * <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
    *
-   * @param int|string $key
+   * @param int $index
    *
    * @return void
    * @throws NotFoundException
    */
-  public function removeByKey(int|string $key): void
+  public function removeByIndex(int $index): void
   {
-    if(!$this->hasKey($key))
+    if(!$this->hasIndex($index))
     {
       throw new NotFoundException();
     }
 
-    unset($this->array[$key]);
+    unset($this->array[$index]);
   }
 
   /**
-   * Remove by multiple keys.
+   * Remove by multiple indexes.
    * <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
    *
-   * @param int|string ...$keys
+   * @param int ...$indexes
    *
    * @return void
    * @throws NotFoundException
    */
-  public function removeByKeys(int|string ...$keys): void
+  public function removeByIndexes(int ...$indexes): void
   {
-    foreach($keys as $key)
+    foreach($indexes as $key)
     {
-      $this->removeByKey($key);
+      $this->removeByIndex($key);
     }
   }
 
@@ -169,7 +168,7 @@ class ArrayList extends ReadOnlyArrayList
       throw new NotFoundException();
     }
 
-    $this->removeByKey($key);
+    $this->removeByIndex($key);
   }
 
   /**

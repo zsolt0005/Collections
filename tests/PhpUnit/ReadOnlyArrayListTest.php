@@ -18,6 +18,9 @@ use Zsolt\Collections\ReadOnlyArrayList;
  */
 final class ReadOnlyArrayListTest extends TestCase
 {
+  /** @var int[] Common test input. */
+  private const VALUES = [1, 2, 3];
+
   /**
    * Test case.
    *
@@ -27,9 +30,8 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testCreateNewInstance(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = new ReadOnlyArrayList(...$values);
-    self::assertSame($values, $arrayList->toArray());
+    $arrayList = new ReadOnlyArrayList(...self::VALUES);
+    self::assertSame(self::VALUES, $arrayList->toArray());
   }
 
   /**
@@ -41,9 +43,8 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testCreateFromValues(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromValues(...$values);
-    self::assertSame($values, $arrayList->toArray());
+    $arrayList = ReadOnlyArrayList::fromValues(...self::VALUES);
+    self::assertSame(self::VALUES, $arrayList->toArray());
   }
 
   /**
@@ -55,24 +56,9 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testCreateFromArray(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
-    self::assertSame($values, $arrayList->toArray());
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
-   * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::fromArray
-   */
-  public function testCreateFromAssocArray(): void
-  {
-    $values = ['a' => 1, 'b' => 2];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
-    self::assertSame($values, $arrayList->toArray());
+    self::assertSame(self::VALUES, $arrayList->toArray());
   }
 
   /**
@@ -84,8 +70,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetExisting(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertSame(1, $arrayList->get(0));
     self::assertSame(2, $arrayList->get(1));
@@ -101,8 +86,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetNonExisting(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     $this->expectException(NotFoundException::class);
     $arrayList->get(10);
@@ -117,8 +101,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetNullableExisting(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertSame(1, $arrayList->getNullable(0));
     self::assertSame(2, $arrayList->getNullable(1));
@@ -134,8 +117,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetNullableNonExisting(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertSame(null, $arrayList->getNullable(10));
   }
@@ -149,8 +131,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testToString(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
     self::assertSame('[1, 2, 3]', $arrayList->toString());
   }
 
@@ -163,12 +144,11 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testIsIterable(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     foreach($arrayList as $key => $value)
     {
-      self::assertSame($values[$key], $value);
+      self::assertSame(self::VALUES[$key], $value);
     }
   }
 
@@ -177,14 +157,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasIndex
    */
-  public function testHasIntKey(): void
+  public function testHasIndex(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
-    self::assertTrue($arrayList->hasKey(0));
+    self::assertTrue($arrayList->hasIndex(0));
   }
 
   /**
@@ -192,14 +171,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasIndex
    */
-  public function testDoesNotHasIntKey(): void
+  public function testDoesNotHaveIndex(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
-    self::assertFalse($arrayList->hasKey(5));
+    self::assertFalse($arrayList->hasIndex(5));
   }
 
   /**
@@ -207,44 +185,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getIndexes
    */
-  public function testHasStringKey(): void
+  public function testGetIndexes(): void
   {
-    $values = ['a' => 1, 'b' => 2];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
-    self::assertTrue($arrayList->hasKey('a'));
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
-   * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasKey
-   */
-  public function testDoesNotStringIntKey(): void
-  {
-    $values = ['a' => 1, 'b' => 2];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
-
-    self::assertFalse($arrayList->hasKey('c'));
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
-   * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::keys
-   */
-  public function testGetKeys(): void
-  {
-    $values = [0, 1, 'a' => 1];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
-
-    self::assertSame([0, 1, 'a'], $arrayList->keys());
+    self::assertSame([0, 1, 2], $arrayList->getIndexes());
   }
 
   /**
@@ -256,8 +203,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testContainsScalar(): void
   {
-    $values = [0, 1, 2];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertTrue($arrayList->contains(1));
   }
@@ -289,14 +235,12 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testIndexOf(): void
   {
-    $values = [1, 2, 3, 'a' => 4];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertSame(null, $arrayList->indexOf(0));
     self::assertSame(0, $arrayList->indexOf(1));
     self::assertSame(1, $arrayList->indexOf(2));
     self::assertSame(2, $arrayList->indexOf(3));
-    self::assertSame('a', $arrayList->indexOf(4));
   }
 
   /**
@@ -304,14 +248,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirstIndex
    */
-  public function testFirstKeyInt(): void
+  public function testFirstIndex(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
-    self::assertSame(0, $arrayList->firstKey());
+    self::assertSame(0, $arrayList->getFirstIndex());
   }
 
   /**
@@ -319,30 +262,14 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirstIndex
    */
-  public function testFirstKeyString(): void
+  public function testFirstIndexNonExisting(): void
   {
-    $values = ['a' => 1, 'b' => 2, 'c' => 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
-
-    self::assertSame('a', $arrayList->firstKey());
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
-   * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstKey
-   */
-  public function testFirstKeyNonExisting(): void
-  {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
     $this->expectException(NotFoundException::class);
-    $arrayList->firstKey();
+    $arrayList->getFirstIndex();
   }
 
   /**
@@ -350,14 +277,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::firstNullableKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirstNullableIndex
    */
-  public function testFirstNullableKeyNonExisting(): void
+  public function testFirstNullableIndexNonExisting(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
-    self::assertSame(null, $arrayList->firstNullableKey());
+    self::assertSame(null, $arrayList->getFirstNullableIndex());
   }
 
   /**
@@ -365,14 +291,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::lastKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLastIndex
    */
-  public function testLastKeyInt(): void
+  public function testLastIndex(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
-    self::assertSame(2, $arrayList->lastKey());
+    self::assertSame(2, $arrayList->getLastIndex());
   }
 
   /**
@@ -380,30 +305,14 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::lastKey
-   */
-  public function testLastKeyString(): void
-  {
-    $values = ['a' => 1, 'b' => 2, 'c' => 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
-
-    self::assertSame('c', $arrayList->lastKey());
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
-   * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::lastKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLastIndex
    */
   public function testLastKeyNonExisting(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
     $this->expectException(NotFoundException::class);
-    $arrayList->lastKey();
+    $arrayList->getLastIndex();
   }
 
   /**
@@ -411,14 +320,13 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::lastNullableKey
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLastNullableIndex
    */
   public function testLastNullableKeyNonExisting(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
-    self::assertSame(null, $arrayList->lastNullableKey());
+    self::assertSame(null, $arrayList->getLastNullableIndex());
   }
 
   /**
@@ -430,8 +338,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetFirstFound(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertSame(1, $arrayList->getFirst());
   }
@@ -445,8 +352,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetFirstNotFound(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
     $this->expectException(NotFoundException::class);
     $arrayList->getFirst();
@@ -461,8 +367,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetNullableFirstNotFound(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
     self::assertSame(null, $arrayList->getNullableFirst());
   }
@@ -476,8 +381,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetLastFound(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     self::assertSame(3, $arrayList->getLast());
   }
@@ -491,8 +395,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testGetLastNotFound(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
     $this->expectException(NotFoundException::class);
     $arrayList->getLast();
@@ -503,12 +406,11 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullableLst
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullableFirst
    */
   public function testGetNullableLastNotFound(): void
   {
-    $values = [];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray([]);
 
     self::assertSame(null, $arrayList->getNullableLast());
   }
@@ -522,8 +424,7 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testForeach(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     $forEachArray = [];
     $arrayList->foreach(function ($value) use (&$forEachArray)
@@ -531,7 +432,7 @@ final class ReadOnlyArrayListTest extends TestCase
       $forEachArray[] = $value;
     });
 
-    self::assertSame($values, $forEachArray);
+    self::assertSame(self::VALUES, $forEachArray);
   }
 
   /**
@@ -543,13 +444,12 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testForeachWithKeys(): void
   {
-    $values = [1, 2, 3];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     /** @throws Exception */
-    $cb = function ($key, $value) use ($values)
+    $cb = function ($key, $value)
     {
-      self::assertSame($values[$key], $value);
+      self::assertSame(self::VALUES[$key], $value);
     };
 
     $arrayList->foreachWithKeys($cb);
@@ -564,9 +464,8 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testForeachReversed(): void
   {
-    $values = [1, 2, 3];
     $valuesReversed = [3, 2, 1];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     $forEachArray = [];
     $arrayList->foreachReversed(function ($value) use (&$forEachArray)
@@ -586,9 +485,8 @@ final class ReadOnlyArrayListTest extends TestCase
    */
   public function testForeachWithKeysReversed(): void
   {
-    $values = ['a' => 1, 'b' => 2, 'c' => 3];
-    $valuesReversed = ['c' => 3, 'b' => 2, 'a' => 1];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
+    $valuesReversed = [2 => 3, 1 => 2, 0 => 1];
+    $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     $forEachArray = [];
     $arrayList->foreachWithKeysReversed(function ($key, $value) use (&$forEachArray)

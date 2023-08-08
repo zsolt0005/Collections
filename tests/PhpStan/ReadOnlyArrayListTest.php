@@ -56,24 +56,10 @@ final class ReadOnlyArrayListTest extends ATest
    * Test case.
    *
    * @return void
-   * @throws NotFoundException
-   */
-  public function testCreateFromAssocArray(): void
-  {
-    $values = ['a' => 1, 'b' => 2];
-    $arrayList = ReadOnlyArrayList::fromArray($values);
-    $this->setInt($arrayList->get('a'));
-  }
-
-  /**
-   * Test case.
-   *
-   * @return void
    */
   public function testIsIterable(): void
   {
     $values = [1, 2, 3];
-    /** @var ReadOnlyArrayList<int, int> $arrayList */
     $arrayList = ReadOnlyArrayList::fromArray($values);
 
     foreach($arrayList as $key => $value)

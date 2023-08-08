@@ -13,9 +13,8 @@ use Zsolt\Collections\Traits\ArrayListTrait;
  * @package Zsolt\Collections
  * @author  Zsolt Döme
  *
- * @template TKey of int|string
  * @template TValue
- * @implements IteratorAggregate<TKey, TValue>
+ * @implements IteratorAggregate<int, TValue>
  */
 class ReadOnlyArrayList implements IteratorAggregate
 {
@@ -38,7 +37,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    * Get the array representation of the {@see ReadOnlyArrayList}. <br>
    * <b>Important!</b> This method creates a copy of the data stored in it.
    *
-   * @return array<TKey, TValue>
+   * @return array<int, TValue>
    */
   public function toArray(): array
   {
@@ -70,7 +69,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    *
    * @return int
    */
-  public function count(): int
+  public function size(): int
   {
     return count($this->array);
   }
@@ -79,11 +78,11 @@ class ReadOnlyArrayList implements IteratorAggregate
    * Get the element at the given index. <br>
    * <b>If not found</b> return {@see null}.
    *
-   * @param int|string $index
+   * @param int $index
    *
    * @return TValue|null
    */
-  public function getNullable(int|string $index): mixed
+  public function getNullable(int $index): mixed
   {
     return $this->array[$index] ?? null;
   }
@@ -92,34 +91,34 @@ class ReadOnlyArrayList implements IteratorAggregate
    * Get the element at the given index. <br>
    * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
    *
-   * @param int|string $key
+   * @param int $index
    *
    * @return TValue
    * @throws NotFoundException
    */
-  public function get(int|string $key): mixed
+  public function get(int $index): mixed
   {
-    return $this->getNullable($key) ?? throw new NotFoundException();
+    return $this->getNullable($index) ?? throw new NotFoundException();
   }
 
   /**
    * Checks whether the given key exists.
    *
-   * @param int|string $key
+   * @param int $index
    *
    * @return bool
    */
-  public function hasKey(int|string $key): bool
+  public function hasIndex(int $index): bool
   {
-    return isset($this->array[$key]);
+    return isset($this->array[$index]);
   }
 
   /**
    * Gets all the existing keys.
    *
-   * @return TKey[]
+   * @return int[]
    */
-  public function keys(): array
+  public function getIndexes(): array
   {
     return array_keys($this->array);
   }
@@ -141,46 +140,47 @@ class ReadOnlyArrayList implements IteratorAggregate
    *
    * @param TValue $value
    *
-   * @return int|string|null
+   * @return int|null
    */
-  public function indexOf(mixed $value): int|string|null
+  public function indexOf(mixed $value): int|null
   {
+    /** @var int|false $index */
     $index = array_search($value, $this->array, true);
     return $index === false ? null : $index;
   }
 
   /**
-   * First key in the array. <br>
+   * First index in the array. <br>
    * <b>If not found</b> return {@see null}.
    *
-   * @return int|string|null
+   * @return int|null
    */
-  public function firstNullableKey(): int|string|null
+  public function getFirstNullableIndex(): int|null
   {
-    return array_keys($this->array)[0] ?? null;
+    return $this->getIndexes()[0] ?? null;
   }
 
   /**
-   * First key in the array. <br>
+   * First index in the array. <br>
    * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
    *
-   * @return int|string
+   * @return int
    * @throws NotFoundException
    */
-  public function firstKey(): int|string
+  public function getFirstIndex(): int
   {
-    return $this->firstNullableKey() ?? throw new NotFoundException();
+    return $this->getFirstNullableIndex() ?? throw new NotFoundException();
   }
 
   /**
-   * last key in the array. <br>
+   * Last index in the array. <br>
    * <b>If not found</b> return {@see null}.
    *
-   * @return int|string|null
+   * @return int|null
    */
-  public function lastNullableKey(): int|string|null
+  public function getLastNullableIndex(): int|null
   {
-    $keys = array_keys($this->array);
+    $keys = $this->getIndexes();
 
     return !empty($keys)
       ? $keys[count($keys) - 1]
@@ -188,15 +188,15 @@ class ReadOnlyArrayList implements IteratorAggregate
   }
 
   /**
-   * Last key in the array. <br>
+   * Last index in the array. <br>
    * <b>If not found</b> fails with <b>{@see NotFoundException}</b>.
    *
-   * @return int|string
+   * @return int
    * @throws NotFoundException
    */
-  public function lastKey(): int|string
+  public function getLastIndex(): int
   {
-    return $this->lastNullableKey() ?? throw new NotFoundException();
+    return $this->getLastNullableIndex() ?? throw new NotFoundException();
   }
 
   /**
@@ -207,7 +207,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    */
   public function getNullableFirst(): mixed
   {
-    $firstKey = $this->firstNullableKey();
+    $firstKey = $this->getFirstNullableIndex();
 
     return $firstKey !== null
       ? $this->array[$firstKey]
@@ -234,7 +234,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    */
   public function getNullableLast(): mixed
   {
-    $lastKey = $this->lastNullableKey();
+    $lastKey = $this->getLastNullableIndex();
 
     return $lastKey !== null
       ? $this->array[$lastKey]
@@ -271,7 +271,7 @@ class ReadOnlyArrayList implements IteratorAggregate
   /**
    * ForEach with keys.
    *
-   * @param callable(TKey, TValue): void $callback
+   * @param callable(int, TValue): void $callback
    *
    * @return void
    */
@@ -292,7 +292,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    */
   public function foreachReversed(callable $callback): void
   {
-    $keys = $this->keys();
+    $keys = $this->getIndexes();
     for($i = count($keys) - 1; $i >= 0; $i--)
     {
       $key = $keys[$i];
@@ -303,13 +303,13 @@ class ReadOnlyArrayList implements IteratorAggregate
   /**
    * ForEach with keys <b>REVERSED</b>.
    *
-   * @param callable(TKey, TValue): void $callback
+   * @param callable(int, TValue): void $callback
    *
    * @return void
    */
   public function foreachWithKeysReversed(callable $callback): void
   {
-    $keys = $this->keys();
+    $keys = $this->getIndexes();
     for($i = count($keys) - 1; $i >= 0; $i--)
     {
       $key = $keys[$i];
@@ -320,7 +320,7 @@ class ReadOnlyArrayList implements IteratorAggregate
   /**
    * Gets the internal array iterator.
    *
-   * @return ArrayIterator<TKey, TValue>
+   * @return ArrayIterator<int, TValue>
    */
   public function getIterator(): ArrayIterator
   {
