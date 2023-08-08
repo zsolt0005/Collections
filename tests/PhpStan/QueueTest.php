@@ -11,7 +11,7 @@ use Zsolt\Collections\Type;
  * @package Zsolt\Collections\PhpStan
  * @author  Zsolt Döme
  */
-class QueueTest extends ATest
+final class QueueTest extends ATest
 {
   /**
    * Test case.

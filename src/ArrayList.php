@@ -3,6 +3,7 @@
 namespace Zsolt\Collections;
 
 use Zsolt\Collections\Exceptions\NotFoundException;
+use Zsolt\Collections\PhpStan\ReadOnlyArrayListTest;
 use Zsolt\Collections\Traits\ArrayListTrait;
 
 /**
@@ -232,5 +233,15 @@ class ArrayList extends ReadOnlyArrayList
   public function pop(): mixed
   {
     return $this->popNullable() ?? throw new NotFoundException();
+  }
+
+  /**
+   * Returns a {@see ReadOnlyArrayList} version of the current {@see ArrayList}.
+   *
+   * @return ReadOnlyArrayList<TValue>
+   */
+  public function toReadOnlyArrayList(): ReadOnlyArrayList
+  {
+    return ReadOnlyArrayList::fromArray($this->array);
   }
 }
