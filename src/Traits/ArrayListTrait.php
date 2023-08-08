@@ -2,14 +2,20 @@
 
 namespace Zsolt\Collections\Traits;
 
+use Zsolt\Collections\Type;
+
 trait ArrayListTrait
 {
   /**
-   * Create an empty {@see self}.
+   * Create an empty {@see self}. <br>
+   * For an empty collection it is necessary to set its type, please use {@see Type}.
    *
-   * @return self<int|string, mixed>
+   * @template TEmptyValue
+   * @param TEmptyValue|null $type
+   *
+   * @return self<int|string, TEmptyValue>
    */
-  public static function empty(): self
+  public static function empty(mixed $type): self
   {
     return new self();
   }

@@ -6,6 +6,7 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use Zsolt\Collections\ArrayList;
 use Zsolt\Collections\Exceptions\NotFoundException;
+use Zsolt\Collections\Type;
 
 /**
  * Tests for {@see ArrayList}.
@@ -27,7 +28,7 @@ final class ArrayListTest extends TestCase
   public function testAddValue(): void
   {
     $testData = [5, 10, 15];
-    $arrayList = ArrayList::empty();
+    $arrayList = ArrayList::empty(Type::int());
     $arrayList->add($testData[0]);
     $arrayList->add($testData[1]);
     $arrayList->add($testData[2]);
@@ -66,7 +67,7 @@ final class ArrayListTest extends TestCase
   {
     $testData = [5, 10, 15];
 
-    $arrayList = ArrayList::empty();
+    $arrayList = ArrayList::empty(Type::int());
     $arrayList->addRange(...$testData);
 
     $toArray = $arrayList->toArray();
