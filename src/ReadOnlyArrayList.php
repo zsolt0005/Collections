@@ -119,7 +119,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    *
    * @return TKey[]
    */
-  public function getKeys(): array
+  public function keys(): array
   {
     return array_keys($this->array);
   }
@@ -292,7 +292,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    */
   public function foreachReversed(callable $callback): void
   {
-    $keys = $this->getKeys();
+    $keys = $this->keys();
     for($i = count($keys) - 1; $i >= 0; $i--)
     {
       $key = $keys[$i];
@@ -309,7 +309,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    */
   public function foreachWithKeysReversed(callable $callback): void
   {
-    $keys = $this->getKeys();
+    $keys = $this->keys();
     for($i = count($keys) - 1; $i >= 0; $i--)
     {
       $key = $keys[$i];

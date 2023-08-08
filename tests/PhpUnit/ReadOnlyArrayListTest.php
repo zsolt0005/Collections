@@ -237,14 +237,14 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getKeys
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::keys
    */
   public function testGetKeys(): void
   {
     $values = [0, 1, 'a' => 1];
     $arrayList = ReadOnlyArrayList::fromArray($values);
 
-    self::assertSame([0, 1, 'a'], $arrayList->getKeys());
+    self::assertSame([0, 1, 'a'], $arrayList->keys());
   }
 
   /**
