@@ -104,8 +104,42 @@ class ArrayList extends ReadOnlyArrayList
     unset($this->array[$firstKey]);
   }
 
-  // Remove
+  /**
+   * Remove by key.
+   * <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @param int|string $key
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function removeByKey(int|string $key): void
+  {
+    if(!$this->hasKey($key))
+    {
+      throw new NotFoundException();
+    }
+
+    unset($this->array[$key]);
+  }
+
+  /**
+   * Remove by multiple keys.
+   * <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @param int|string ...$keys
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function removeByKeys(int|string ...$keys): void
+  {
+    foreach($keys as $key)
+    {
+      $this->removeByKey($key);
+    }
+  }
+
+  // Removes
   // RemoveRange
-  // RemoveByKey
-  // RemoveByKeys
 }

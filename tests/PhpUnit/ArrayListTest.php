@@ -190,4 +190,41 @@ final class ArrayListTest extends TestCase
     $this->expectException(NotFoundException::class);
     $arrayList->removeLast();
   }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::removeByKey
+   */
+  public function testRemoveByExistingKey(): void
+  {
+    $testData = [1, 2, 3];
+    $expected = [0 => 1, 2=> 3];
+
+    $arrayList = ArrayList::fromArray($testData);
+
+    $arrayList->removeByKey(1);
+    $toArray = $arrayList->toArray();
+
+    self::assertSame($expected, $toArray);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws Exception
+   * @covers \Zsolt\Collections\ArrayList::removeByKey
+   */
+  public function testRemoveByNonExistingKey(): void
+  {
+    $testData = [1, 2, 3];
+
+    $arrayList = ArrayList::fromArray($testData);
+
+    $this->expectException(NotFoundException::class);
+    $arrayList->removeByKey(3);
+  }
 }
