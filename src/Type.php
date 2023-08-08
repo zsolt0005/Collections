@@ -10,23 +10,25 @@ namespace Zsolt\Collections;
  */
 class Type
 {
-  /**
-   * Integer type.
-   *
-   * @return int
-   */
-  public static function int(): int
-  {
-    return 0;
-  }
+  /** @return int */
+  public static function int(): int{ return 0; }
+
+  /** @return float */
+  public static function float(): float { return 0.0; }
+
+  /** @return string */
+  public static function string(): string { return ''; }
+
+  /** @return bool */
+  public static function bool(): bool { return true; }
 
   /**
-   * String type.
+   * Returns a type based on the value specified.
    *
-   * @return string
+   * @template TValue
+   * @param TValue $value
+   *
+   * @return TValue
    */
-  public static function string(): string
-  {
-    return '';
-  }
+  public static function from(mixed $value): mixed { return $value; }
 }
