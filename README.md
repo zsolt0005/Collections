@@ -70,7 +70,7 @@ $queue->peek(); // 3
 $queue->dequeue(); // 3
 
 $queue->isEmpty(); // false
-$queue->count(); // 2
+$queue->count(); // 1
 
 $queue->clear();
 
@@ -81,6 +81,25 @@ $queue->dequeue(); // null
 
 #### Stack (Coming soon)
 ```php
+$stack = Stack::create(Type::int());
+$stack->push(5);
+$stack->push(4);
+$stack->push(3);
+$stack->push(2);
+
+$stack->pop(); // 2
+$stack->pop(); // 3
+$stack->peek(); // 4
+$stack->pop(); // 4
+
+$stack->isEmpty(); // false
+$stack->count(); // 1
+
+$stack->clear();
+
+$stack->isEmpty(); // true
+$stack->count(); // 0
+$stack->pop(); // null
 ```
 
 #### Dictionary (Coming soon)
