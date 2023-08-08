@@ -11,7 +11,7 @@ If you like or are using this project please give it a star. Thanks!
 ___
 
 ## Docs
-**Coming soon**
+Compatible with **PHPStan level 9** <br>
 
 ## Features
 #### ReadOnlyArrayList
@@ -22,8 +22,8 @@ $arrayList = ReadOnlyArrayList::fromValues(1, 2, 3, 4);
 $arrayList->toString(); // [1, 2, 3, 4]
 
 $arrayList->count(); // 4
-$arrayList->keys(); // [0, 1, 2, 3]
-$arrayList->hasKey(5); // false
+$arrayList->getIdnexes(); // [0, 1, 2, 3]
+$arrayList->hasIndex(5); // false
 $arrayList->get(2); // 3
 $arrayList->getNullable(5); // null
 
