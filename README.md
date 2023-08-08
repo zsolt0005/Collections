@@ -81,21 +81,14 @@ $queue->dequeue(); // null
 ```php
 ```
 
-#### LinkedList (Coming soon)
+#### Dictionary (Coming soon)
 ```php
 ```
 
-#### Dictionary (Coming soon)
+#### LinkedList (Coming soon)
 ```php
 ```
 
 #### Tree (Coming soon)
 ```php
 ```
-
-## TODO
- * Queue
-   * toString
-   * toArray
-   * toArrayList
-   * toReadOnlyArrayList

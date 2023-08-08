@@ -103,4 +103,54 @@ class Queue
   {
     $this->list->clear();
   }
+
+  /**
+   * To string.
+   *
+   * @return string
+   */
+  public function toString(): string
+  {
+    return $this->list->toString();
+  }
+
+  /**
+   * To string.
+   *
+   * @return string
+   */
+  public function __toString(): string
+  {
+    return $this->toString();
+  }
+
+  /**
+   * Get the array representation of the {@see Queue}.
+   *
+   * @return array<TValue>
+   */
+  public function toArray(): array
+  {
+    return $this->list->toArray();
+  }
+
+  /**
+   * Get the {@see ArrayList} representation of the {@see Queue}.
+   *
+   * @return ArrayList<TValue>
+   */
+  public function toArrayList(): ArrayList
+  {
+    return ArrayList::fromArray($this->list->toArray());
+  }
+
+  /**
+   * Get the {@see ReadOnlyArrayList} representation of the {@see Queue}.
+   *
+   * @return ReadOnlyArrayList<TValue>
+   */
+  public function toReadOnlyArrayList(): ReadOnlyArrayList
+  {
+    return $this->list->toReadOnlyArrayList();
+  }
 }

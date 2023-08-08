@@ -34,8 +34,7 @@ class ReadOnlyArrayList implements IteratorAggregate
   use ArrayListTrait;
 
   /**
-   * Get the array representation of the {@see ReadOnlyArrayList}. <br>
-   * <b>Important!</b> This method creates a copy of the data stored in it.
+   * Get the array representation of the {@see ReadOnlyArrayList}.
    *
    * @return array<int, TValue>
    */
