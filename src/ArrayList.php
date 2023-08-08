@@ -140,6 +140,40 @@ class ArrayList extends ReadOnlyArrayList
     }
   }
 
-  // Removes
-  // RemoveRange
+  /**
+   * Remove by value.
+   *  <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @param TValue $value
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function remove(mixed $value): void
+  {
+    $key = $this->indexOf($value);
+    if($key === null)
+    {
+      throw new NotFoundException();
+    }
+
+    $this->removeByKey($key);
+  }
+
+  /**
+   * Removes all give values.
+   *  <b>If not found,</b> fails with <b>{@see NotFoundException}</b>.
+   *
+   * @param TValue $values
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function removeRange(mixed ...$values): void
+  {
+    foreach($values as $value)
+    {
+      $this->remove($value);
+    }
+  }
 }
