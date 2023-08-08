@@ -13,6 +13,8 @@ ___
 ## Docs
 Compatible with **PHPStan level 9** <br>
 
+*Documentation coming soon*
+
 ## Features
 #### ReadOnlyArrayList
 Provides more elegant way to work with arrays. It's a **read-only** version of the **ArrayList**, it does not allow to manipulate
