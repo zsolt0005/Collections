@@ -40,25 +40,13 @@ class ArrayList extends ReadOnlyArrayList
   }
 
   /**
-   * Adds a new value to the beginning.
-   *
-   * @param TValue $value
-   *
-   * @return void
-   */
-  public function prepend(mixed $value): void
-  {
-    array_unshift($this->array, $value);
-  }
-
-  /**
    * Adds multiple values.
    *
    * @param TValue ...$values
    *
    * @return void
    */
-  public function addRange(mixed ...$values): void
+  public function addMany(mixed ...$values): void
   {
     $this->array = array_merge($this->array, $values);
   }
@@ -73,6 +61,18 @@ class ArrayList extends ReadOnlyArrayList
   public function addArray(array $array): void
   {
     $this->array = array_merge($this->array, $array);
+  }
+
+  /**
+   * Adds a new value to the beginning.
+   *
+   * @param TValue $value
+   *
+   * @return void
+   */
+  public function prepend(mixed $value): void
+  {
+    array_unshift($this->array, $value);
   }
 
   /**
@@ -179,7 +179,7 @@ class ArrayList extends ReadOnlyArrayList
    * @return void
    * @throws NotFoundException
    */
-  public function removeRange(mixed ...$values): void
+  public function removeMany(mixed ...$values): void
   {
     foreach($values as $value)
     {
