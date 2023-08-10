@@ -44,7 +44,7 @@ $arrayList->toString(); // [1, 2, 3]
 $arrayList->add(4);
 $arrayList->toString(); // [1, 2, 3, 4]
 
-$arrayList->addRange(5, 6, 7);
+$arrayList->addMany(5, 6, 7);
 $arrayList->toString(); // [1, 2, 3, 4, 5, 6, 7]
 
 $arrayList->removeFirst();
@@ -52,13 +52,13 @@ $arrayList->removeLast();
 $arrayList->toString(); // [2, 3, 4, 5, 6]
 
 $arrayList->remove(4);
-$arrayList->removeRange(5, 6);
+$arrayList->removeMany(5, 6);
 $arrayList->toString(); // [2, 3]
 ```
 
 #### Queue
 ```php
-$queue = Queue::create(Type::int());
+$queue = Queue::empty(Type::int());
 $queue->enqueue(5);
 $queue->enqueue(4);
 $queue->enqueue(3);
@@ -81,7 +81,7 @@ $queue->dequeue(); // null
 
 #### Stack
 ```php
-$stack = Stack::create(Type::int());
+$stack = Stack::empty(Type::int());
 $stack->push(5);
 $stack->push(4);
 $stack->push(3);
@@ -105,3 +105,17 @@ $stack->pop(); // null
 #### Dictionary (Coming soon)
 ```php
 ```
+
+## TODO
+ * Dictionary
+   * ReadOnlyDictionary
+   * Dictionary: Dictionary
+ * Lists
+   * Array functions
+     * Map
+     * Reduce
+     * Filter
+   * Queue
+     * enqueueMany
+   * Stack
+     * pushMany

@@ -18,17 +18,18 @@ class Stack extends ACollectionBase
 {
   /**
    * Constructor. <br>
-   * For a queue it is necessary to set its type, please use {@see Type}.
    *
-   * @param TValue $type
+   * @param TValue ...$values
    */
-  public function __construct(mixed $type)
+  public function __construct(mixed ...$values)
   {
-    /** @var ArrayList<TValue> $emptyList */
-    $emptyList = ArrayList::empty($type);
+    /** @var ArrayList<TValue> $list */
+    $list = ArrayList::fromValues(...$values);
 
-    $this->list = $emptyList;
+    $this->list = $list;
   }
+
+  use CollectionTrait;
 
   /**
    * Factory method to create a new queue. <br>
