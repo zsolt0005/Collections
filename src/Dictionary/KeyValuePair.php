@@ -26,10 +26,13 @@ class KeyValuePair
   /**
    * Factory method.
    *
-   * @param TKey $key
-   * @param TValue $value
+   * @template TNewKey
+   * @template TNewValue
    *
-   * @return self<TKey, TValue>
+   * @param TNewKey $key
+   * @param TNewValue $value
+   *
+   * @return self<TNewKey, TNewValue>
    */
   public static function create(mixed $key, mixed $value): self
   {
