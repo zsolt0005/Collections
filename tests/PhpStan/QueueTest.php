@@ -31,6 +31,30 @@ final class QueueTest extends ATest
    *
    * @return void
    */
+  public function testCreateEmpty(): void
+  {
+    $queue = Queue::empty(Type::int());
+    $queue->enqueue(5);
+    $this->setNullableInt($queue->dequeue());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   */
+  public function testCreateFromValues(): void
+  {
+    $queue = Queue::fromValues(5, 4, 3);
+    $queue->enqueue(2);
+    $this->setNullableInt($queue->dequeue());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   */
   public function testToArray(): void
   {
     $queue = new Queue(Type::int());
