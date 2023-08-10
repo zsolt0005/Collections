@@ -19,12 +19,12 @@ class Queue extends ACollectionBase
   /**
    * Constructor. <br>
    *
-   * @param TValue ...$values
+   * @param TValue ...$items
    */
-  public function __construct(mixed ...$values)
+  public function __construct(mixed ...$items)
   {
     /** @var ArrayList<TValue> $list */
-    $list = ArrayList::fromValues(...$values);
+    $list = ArrayList::fromValues(...$items);
 
     $this->list = $list;
   }
@@ -34,13 +34,25 @@ class Queue extends ACollectionBase
   /**
    * Enqueues the given item.
    *
-   * @param TValue $value
+   * @param TValue $item
    *
    * @return void
    */
-  public function enqueue(mixed $value): void
+  public function enqueue(mixed $item): void
   {
-    $this->list->add($value);
+    $this->list->add($item);
+  }
+
+  /**
+   * Enqueues all the given items.
+   *
+   * @param TValue $items
+   *
+   * @return void
+   */
+  public function enqueueAll(mixed ...$items): void
+  {
+    $this->list->addAll(...$items);
   }
 
   /**

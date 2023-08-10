@@ -19,12 +19,12 @@ class Stack extends ACollectionBase
   /**
    * Constructor. <br>
    *
-   * @param TValue ...$values
+   * @param TValue ...$items
    */
-  public function __construct(mixed ...$values)
+  public function __construct(mixed ...$items)
   {
     /** @var ArrayList<TValue> $list */
-    $list = ArrayList::fromValues(...$values);
+    $list = ArrayList::fromValues(...$items);
 
     $this->list = $list;
   }
@@ -54,6 +54,18 @@ class Stack extends ACollectionBase
   public function push(mixed $value): void
   {
     $this->list->add($value);
+  }
+
+  /**
+   * Adds the given item.
+   *
+   * @param TValue $items
+   *
+   * @return void
+   */
+  public function pushAll(mixed ...$items): void
+  {
+    $this->list->addAll(...$items);
   }
 
   /**

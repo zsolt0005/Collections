@@ -115,7 +115,3 @@ $stack->pop(); // null
      * Map
      * Reduce
      * Filter
-   * Queue
-     * enqueueMany
-   * Stack
-     * pushMany

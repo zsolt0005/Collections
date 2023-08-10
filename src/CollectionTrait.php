@@ -22,12 +22,12 @@ trait CollectionTrait
    * Create {@see self} from values.
    *
    * @template TValues
-   * @param TValues ...$values
+   * @param TValues ...$items
    *
    * @return self<TValues>
    */
-  public static function fromValues(mixed ...$values): self
+  public static function fromValues(mixed ...$items): self
   {
-    return new self(...$values);
+    return new self(...$items);
   }
 }
