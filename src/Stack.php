@@ -32,19 +32,6 @@ class Stack extends ACollectionBase
   use CollectionTrait;
 
   /**
-   * Factory method to create a new queue. <br>
-   * For a queue it is necessary to set its type, please use {@see Type}.
-   *
-   * @param TValue $type
-   *
-   * @return self<TValue>
-   */
-  public static function create(mixed $type): self
-  {
-    return new self($type);
-  }
-
-  /**
    * Adds the given item.
    *
    * @param TValue $value
