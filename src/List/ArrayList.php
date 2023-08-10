@@ -40,13 +40,13 @@ class ArrayList extends ReadOnlyArrayList
   }
 
   /**
-   * Adds multiple values.
+   * Adds all the given values.
    *
    * @param TValue ...$values
    *
    * @return void
    */
-  public function addMany(mixed ...$values): void
+  public function addAll(mixed ...$values): void
   {
     $this->array = array_merge($this->array, $values);
   }
@@ -179,7 +179,7 @@ class ArrayList extends ReadOnlyArrayList
    * @return void
    * @throws NotFoundException
    */
-  public function removeMany(mixed ...$values): void
+  public function removeAll(mixed ...$values): void
   {
     foreach($values as $value)
     {

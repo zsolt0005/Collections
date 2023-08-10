@@ -44,7 +44,7 @@ $arrayList->toString(); // [1, 2, 3]
 $arrayList->add(4);
 $arrayList->toString(); // [1, 2, 3, 4]
 
-$arrayList->addMany(5, 6, 7);
+$arrayList->addAll(5, 6, 7);
 $arrayList->toString(); // [1, 2, 3, 4, 5, 6, 7]
 
 $arrayList->removeFirst();
@@ -52,7 +52,7 @@ $arrayList->removeLast();
 $arrayList->toString(); // [2, 3, 4, 5, 6]
 
 $arrayList->remove(4);
-$arrayList->removeMany(5, 6);
+$arrayList->removeAll(5, 6);
 $arrayList->toString(); // [2, 3]
 ```
 

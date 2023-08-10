@@ -61,14 +61,14 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\List\ArrayList::addMany
+   * @covers \Zsolt\Collections\List\ArrayList::addAll
    */
   public function testAddRangeIntKeysValues(): void
   {
     $testData = [5, 10, 15];
 
     $arrayList = ArrayList::empty(Type::int());
-    $arrayList->addMany(...$testData);
+    $arrayList->addAll(...$testData);
 
     $toArray = $arrayList->toArray();
 
