@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Zsolt\Collections\Tests;
+namespace Zsolt\Collections\Tests\PhpUnit;
 
 use Exception;
 use PHPUnit\Framework\TestCase;

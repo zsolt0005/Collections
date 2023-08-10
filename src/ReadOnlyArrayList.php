@@ -274,7 +274,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    *
    * @return void
    */
-  public function foreachWithKeys(callable $callback): void
+  public function foreachIndexed(callable $callback): void
   {
     foreach($this->array as $key => $value)
     {
@@ -306,7 +306,7 @@ class ReadOnlyArrayList implements IteratorAggregate
    *
    * @return void
    */
-  public function foreachWithKeysReversed(callable $callback): void
+  public function foreachIndexedReversed(callable $callback): void
   {
     $keys = $this->getIndexes();
     for($i = count($keys) - 1; $i >= 0; $i--)

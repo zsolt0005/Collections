@@ -12,7 +12,7 @@ namespace Zsolt\Collections;
  */
 abstract class ACollectionBase
 {
-  /** @var ArrayList<TValue> Underlying array of the {@see Queue} data type. */
+  /** @var ArrayList<TValue> Underlying array of the {@see ACollectionBase}. */
   protected ArrayList $list;
 
   /**

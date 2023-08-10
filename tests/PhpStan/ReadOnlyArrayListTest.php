@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Zsolt\Collections\PhpStan;
+namespace Zsolt\Collections\Tests\PhpStan;
 
 use Zsolt\Collections\Exceptions\NotFoundException;
 use Zsolt\Collections\ReadOnlyArrayList;

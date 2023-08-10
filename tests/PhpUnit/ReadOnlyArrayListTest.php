@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Zsolt\Collections\Tests;
+namespace Zsolt\Collections\Tests\PhpUnit;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -440,7 +440,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachWithKeys
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachIndexed
    */
   public function testForeachWithKeys(): void
   {
@@ -452,7 +452,7 @@ final class ReadOnlyArrayListTest extends TestCase
       self::assertSame(self::VALUES[$key], $value);
     };
 
-    $arrayList->foreachWithKeys($cb);
+    $arrayList->foreachIndexed($cb);
   }
 
   /**
@@ -481,7 +481,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachWithKeysReversed
+   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachIndexedReversed
    */
   public function testForeachWithKeysReversed(): void
   {
@@ -489,7 +489,7 @@ final class ReadOnlyArrayListTest extends TestCase
     $arrayList = ReadOnlyArrayList::fromArray(self::VALUES);
 
     $forEachArray = [];
-    $arrayList->foreachWithKeysReversed(function ($key, $value) use (&$forEachArray)
+    $arrayList->foreachIndexedReversed(function ($key, $value) use (&$forEachArray)
     {
       $forEachArray[$key] = $value;
     });
