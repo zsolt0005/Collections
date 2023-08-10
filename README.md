@@ -11,7 +11,9 @@ If you like or are using this project please give it a star. Thanks!
 ___
 
 ## Docs
-**Coming soon**
+Compatible with **PHPStan level 9** <br>
+
+*Documentation coming soon*
 
 ## Features
 #### ReadOnlyArrayList
@@ -22,8 +24,8 @@ $arrayList = ReadOnlyArrayList::fromValues(1, 2, 3, 4);
 $arrayList->toString(); // [1, 2, 3, 4]
 
 $arrayList->count(); // 4
-$arrayList->keys(); // [0, 1, 2, 3]
-$arrayList->hasKey(5); // false
+$arrayList->getIdnexes(); // [0, 1, 2, 3]
+$arrayList->hasIndex(5); // false
 $arrayList->get(2); // 3
 $arrayList->getNullable(5); // null
 
@@ -54,7 +56,7 @@ $arrayList->removeRange(5, 6);
 $arrayList->toString(); // [2, 3]
 ```
 
-#### Queue (Coming soon)
+#### Queue
 ```php
 $queue = Queue::create(Type::int());
 $queue->enqueue(5);
@@ -68,7 +70,7 @@ $queue->peek(); // 3
 $queue->dequeue(); // 3
 
 $queue->isEmpty(); // false
-$queue->count(); // 2
+$queue->count(); // 1
 
 $queue->clear();
 
@@ -77,18 +79,29 @@ $queue->count(); // 0
 $queue->dequeue(); // null
 ```
 
-#### Stack (Coming soon)
+#### Stack
 ```php
-```
+$stack = Stack::create(Type::int());
+$stack->push(5);
+$stack->push(4);
+$stack->push(3);
+$stack->push(2);
 
-#### LinkedList (Coming soon)
-```php
+$stack->pop(); // 2
+$stack->pop(); // 3
+$stack->peek(); // 4
+$stack->pop(); // 4
+
+$stack->isEmpty(); // false
+$stack->count(); // 1
+
+$stack->clear();
+
+$stack->isEmpty(); // true
+$stack->count(); // 0
+$stack->pop(); // null
 ```
 
 #### Dictionary (Coming soon)
-```php
-```
-
-#### Tree (Coming soon)
 ```php
 ```

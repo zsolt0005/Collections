@@ -10,10 +10,10 @@ trait ArrayListTrait
    * Create an empty {@see self}. <br>
    * For an empty collection it is necessary to set its type, please use {@see Type}.
    *
-   * @template TEmptyValue
-   * @param TEmptyValue|null $type
+   * @template TEmpty
+   * @param TEmpty|null $type
    *
-   * @return self<int|string, TEmptyValue>
+   * @return self<TEmpty>
    */
   public static function empty(mixed $type): self
   {
@@ -26,7 +26,7 @@ trait ArrayListTrait
    * @template TValues
    * @param TValues ...$values
    *
-   * @return self<int|string, TValues>
+   * @return self<TValues>
    */
   public static function fromValues(mixed ...$values): self
   {
@@ -36,10 +36,10 @@ trait ArrayListTrait
   /**
    * Create {@see self} from array.
    *
-   * @template TArray
-   * @param TArray[] $array
+   * @template TArrayValue
+   * @param array<int, TArrayValue> $array
    *
-   * @return self<int|string, TArray>
+   * @return self<TArrayValue>
    */
   public static function fromArray(array $array): self
   {

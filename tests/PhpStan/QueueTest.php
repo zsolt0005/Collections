@@ -2,6 +2,7 @@
 
 namespace Zsolt\Collections\PhpStan;
 
+use Zsolt\Collections\Exceptions\NotFoundException;
 use Zsolt\Collections\Queue;
 use Zsolt\Collections\Type;
 
@@ -11,7 +12,7 @@ use Zsolt\Collections\Type;
  * @package Zsolt\Collections\PhpStan
  * @author  Zsolt Döme
  */
-class QueueTest extends ATest
+final class QueueTest extends ATest
 {
   /**
    * Test case.
@@ -23,5 +24,52 @@ class QueueTest extends ATest
     $queue = new Queue(Type::int());
     $queue->enqueue(5);
     $this->setNullableInt($queue->dequeue());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   */
+  public function testToArray(): void
+  {
+    $queue = new Queue(Type::int());
+    $queue->enqueue(5);
+
+    $array = $queue->toArray();
+
+    $this->setInt($array[0]);
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function testToArrayList(): void
+  {
+    $queue = new Queue(Type::int());
+    $queue->enqueue(5);
+
+    $list = $queue->toArrayList();
+
+    $this->setInt($list->getFirst());
+  }
+
+  /**
+   * Test case.
+   *
+   * @return void
+   * @throws NotFoundException
+   */
+  public function testToReadOnlyArrayList(): void
+  {
+    $queue = new Queue(Type::int());
+    $queue->enqueue(5);
+
+    $list = $queue->toReadOnlyArrayList();
+
+    $this->setInt($list->getFirst());
   }
 }

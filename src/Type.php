@@ -31,4 +31,6 @@ class Type
    * @return TValue
    */
   public static function from(mixed $value): mixed { return $value; }
+
+  // TODO From class
 }

@@ -3,15 +3,15 @@
 namespace Zsolt\Collections;
 
 /**
- * Queue (FIFO).
+ * Stack (LIFO).
  *
  * @package Zsolt\Collections
  * @author  Zsolt Döme
  *
- * @template TValue of mixed
+ * @template TValue
  * @extends ACollectionBase<TValue>
  */
-class Queue extends ACollectionBase
+class Stack extends ACollectionBase
 {
   /**
    * Constructor. <br>
@@ -41,29 +41,29 @@ class Queue extends ACollectionBase
   }
 
   /**
-   * Enqueues the given item.
+   * Adds the given item.
    *
    * @param TValue $value
    *
    * @return void
    */
-  public function enqueue(mixed $value): void
+  public function push(mixed $value): void
   {
     $this->list->add($value);
   }
 
   /**
-   * Dequeues the next item.
+   * Pops the next item.
    *
    * @return TValue|null
    */
-  public function dequeue(): mixed
+  public function pop(): mixed
   {
-    return $this->list->shiftNullable();
+    return $this->list->popNullable();
   }
 
   /**
-   * Peek at next item to dequeue if not empty, **{@see null}** otherwise.
+   * Peek at next item to pop if not empty, **{@see null}** otherwise.
    *
    * @return TValue|null
    */
