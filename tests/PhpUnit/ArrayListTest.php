@@ -4,9 +4,9 @@ namespace Zsolt\Collections\Tests\PhpUnit;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use Zsolt\Collections\ArrayList;
 use Zsolt\Collections\Exceptions\NotFoundException;
-use Zsolt\Collections\Type;
+use Zsolt\Collections\List\ArrayList;
+use Zsolt\Collections\Models\Type;
 
 /**
  * Tests for {@see ArrayList}.
@@ -14,7 +14,7 @@ use Zsolt\Collections\Type;
  * @package Zsolt\Collections
  * @author Zsolt Döme
  *
- * @covers \Zsolt\Collections\ArrayList
+ * @covers \Zsolt\Collections\List\ArrayList
  */
 final class ArrayListTest extends TestCase
 {
@@ -23,7 +23,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::add
+   * @covers \Zsolt\Collections\List\ArrayList::add
    */
   public function testAddValue(): void
   {
@@ -43,7 +43,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::prepend
+   * @covers \Zsolt\Collections\List\ArrayList::prepend
    */
   public function testPrependValue(): void
   {
@@ -61,7 +61,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::addRange
+   * @covers \Zsolt\Collections\List\ArrayList::addRange
    */
   public function testAddRangeIntKeysValues(): void
   {
@@ -80,7 +80,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::addArray
+   * @covers \Zsolt\Collections\List\ArrayList::addArray
    */
   public function testAddArray(): void
   {
@@ -101,7 +101,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::clear
+   * @covers \Zsolt\Collections\List\ArrayList::clear
    */
   public function testClear(): void
   {
@@ -120,7 +120,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeFirst
+   * @covers \Zsolt\Collections\List\ArrayList::removeFirst
    */
   public function testRemoveFirst(): void
   {
@@ -140,7 +140,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeFirst
+   * @covers \Zsolt\Collections\List\ArrayList::removeFirst
    */
   public function testRemoveFirstEmpty(): void
   {
@@ -157,7 +157,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeLast
+   * @covers \Zsolt\Collections\List\ArrayList::removeLast
    */
   public function testRemoveLast(): void
   {
@@ -177,7 +177,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeLast
+   * @covers \Zsolt\Collections\List\ArrayList::removeLast
    */
   public function testRemoveLastEmpty(): void
   {
@@ -194,7 +194,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeByIndex
+   * @covers \Zsolt\Collections\List\ArrayList::removeByIndex
    */
   public function testRemoveByExistingKey(): void
   {
@@ -214,7 +214,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::removeByIndex
+   * @covers \Zsolt\Collections\List\ArrayList::removeByIndex
    */
   public function testRemoveByNonExistingKey(): void
   {
@@ -231,7 +231,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::remove
+   * @covers \Zsolt\Collections\List\ArrayList::remove
    */
   public function testRemoveByExistingValue(): void
   {
@@ -251,7 +251,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::remove
+   * @covers \Zsolt\Collections\List\ArrayList::remove
    */
   public function testRemoveByNonExistingValue(): void
   {
@@ -268,7 +268,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::shift
+   * @covers \Zsolt\Collections\List\ArrayList::shift
    */
   public function testShiftExisting(): void
   {
@@ -287,7 +287,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::shift
+   * @covers \Zsolt\Collections\List\ArrayList::shift
    */
   public function testShiftNotExisting(): void
   {
@@ -302,7 +302,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::shiftNullable
+   * @covers \Zsolt\Collections\List\ArrayList::shiftNullable
    */
   public function testShiftNullableNotExisting(): void
   {
@@ -316,7 +316,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::pop
+   * @covers \Zsolt\Collections\List\ArrayList::pop
    */
   public function testPopExisting(): void
   {
@@ -335,7 +335,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::pop
+   * @covers \Zsolt\Collections\List\ArrayList::pop
    */
   public function testPopNotExisting(): void
   {
@@ -350,7 +350,7 @@ final class ArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ArrayList::popNullable
+   * @covers \Zsolt\Collections\List\ArrayList::popNullable
    */
   public function testPopNullableNotExisting(): void
   {

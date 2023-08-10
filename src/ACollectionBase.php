@@ -2,6 +2,9 @@
 
 namespace Zsolt\Collections;
 
+use Zsolt\Collections\List\ArrayList;
+use Zsolt\Collections\List\ReadOnlyArrayList;
+
 /**
  * Common functionality across collections.
  *

@@ -2,8 +2,8 @@
 
 namespace Zsolt\Collections\Tests\PhpStan;
 
-use Zsolt\Collections\ArrayList;
 use Zsolt\Collections\Exceptions\NotFoundException;
+use Zsolt\Collections\List\ArrayList;
 
 /**
  * Test PHPStan type detection for generics.

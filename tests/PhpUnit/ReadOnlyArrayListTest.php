@@ -6,7 +6,7 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Zsolt\Collections\Exceptions\NotFoundException;
-use Zsolt\Collections\ReadOnlyArrayList;
+use Zsolt\Collections\List\ReadOnlyArrayList;
 
 /**
  * Tests for {@see ReadOnlyArrayList}.
@@ -14,7 +14,7 @@ use Zsolt\Collections\ReadOnlyArrayList;
  * @package Zsolt\Collections
  * @author Zsolt Döme
  *
- * @covers \Zsolt\Collections\ReadOnlyArrayList
+ * @covers \Zsolt\Collections\List\ReadOnlyArrayList
  */
 final class ReadOnlyArrayListTest extends TestCase
 {
@@ -26,7 +26,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::__construct
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::__construct
    */
   public function testCreateNewInstance(): void
   {
@@ -39,7 +39,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::fromValues
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::fromValues
    */
   public function testCreateFromValues(): void
   {
@@ -52,7 +52,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::fromArray
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::fromArray
    */
   public function testCreateFromArray(): void
   {
@@ -66,7 +66,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::get
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::get
    */
   public function testGetExisting(): void
   {
@@ -82,7 +82,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::get
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::get
    */
   public function testGetNonExisting(): void
   {
@@ -97,7 +97,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullable
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getNullable
    */
   public function testGetNullableExisting(): void
   {
@@ -113,7 +113,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullable
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getNullable
    */
   public function testGetNullableNonExisting(): void
   {
@@ -127,7 +127,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::toString
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::toString
    */
   public function testToString(): void
   {
@@ -140,7 +140,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList
    */
   public function testIsIterable(): void
   {
@@ -157,7 +157,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::hasIndex
    */
   public function testHasIndex(): void
   {
@@ -171,7 +171,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::hasIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::hasIndex
    */
   public function testDoesNotHaveIndex(): void
   {
@@ -185,7 +185,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getIndexes
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getIndexes
    */
   public function testGetIndexes(): void
   {
@@ -199,7 +199,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::contains
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::contains
    */
   public function testContainsScalar(): void
   {
@@ -213,7 +213,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::contains
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::contains
    */
   public function testContainsReferenceType(): void
   {
@@ -231,7 +231,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::indexOf
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::indexOf
    */
   public function testIndexOf(): void
   {
@@ -248,7 +248,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirstIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getFirstIndex
    */
   public function testFirstIndex(): void
   {
@@ -262,7 +262,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirstIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getFirstIndex
    */
   public function testFirstIndexNonExisting(): void
   {
@@ -277,7 +277,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirstNullableIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getFirstNullableIndex
    */
   public function testFirstNullableIndexNonExisting(): void
   {
@@ -291,7 +291,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLastIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getLastIndex
    */
   public function testLastIndex(): void
   {
@@ -305,7 +305,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLastIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getLastIndex
    */
   public function testLastKeyNonExisting(): void
   {
@@ -320,7 +320,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLastNullableIndex
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getLastNullableIndex
    */
   public function testLastNullableKeyNonExisting(): void
   {
@@ -334,7 +334,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirst
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getFirst
    */
   public function testGetFirstFound(): void
   {
@@ -348,7 +348,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getFirst
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getFirst
    */
   public function testGetFirstNotFound(): void
   {
@@ -363,7 +363,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullableFirst
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getNullableFirst
    */
   public function testGetNullableFirstNotFound(): void
   {
@@ -377,7 +377,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLast
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getLast
    */
   public function testGetLastFound(): void
   {
@@ -391,7 +391,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getLast
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getLast
    */
   public function testGetLastNotFound(): void
   {
@@ -406,7 +406,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::getNullableFirst
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::getNullableFirst
    */
   public function testGetNullableLastNotFound(): void
   {
@@ -420,7 +420,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreach
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::foreach
    */
   public function testForeach(): void
   {
@@ -440,7 +440,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachIndexed
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::foreachIndexed
    */
   public function testForeachWithKeys(): void
   {
@@ -460,7 +460,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachReversed
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::foreachReversed
    */
   public function testForeachReversed(): void
   {
@@ -481,7 +481,7 @@ final class ReadOnlyArrayListTest extends TestCase
    *
    * @return void
    * @throws Exception
-   * @covers \Zsolt\Collections\ReadOnlyArrayList::foreachIndexedReversed
+   * @covers \Zsolt\Collections\List\ReadOnlyArrayList::foreachIndexedReversed
    */
   public function testForeachWithKeysReversed(): void
   {

@@ -3,8 +3,8 @@
 namespace Zsolt\Collections\Tests\PhpStan;
 
 use Zsolt\Collections\Exceptions\NotFoundException;
+use Zsolt\Collections\Models\Type;
 use Zsolt\Collections\Queue;
-use Zsolt\Collections\Type;
 
 /**
  * Test PHPStan type detection for generics.

@@ -1,8 +1,8 @@
 <?php
 
-namespace Zsolt\Collections\Traits;
+namespace Zsolt\Collections\List;
 
-use Zsolt\Collections\Type;
+use Zsolt\Collections\Models\Type;
 
 trait ArrayListTrait
 {

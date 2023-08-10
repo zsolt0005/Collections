@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Zsolt\Collections;
+namespace Zsolt\Collections\Models;
 
 /**
  * PHP Types for the empty collections.
  *
- * @package Zsolt\Collections
+ * @package Zsolt\Collections\Models
  * @author  Zsolt Döme
  */
 class Type

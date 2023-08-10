@@ -1,11 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Zsolt\Collections;
+namespace Zsolt\Collections\List;
 
 use ArrayIterator;
 use IteratorAggregate;
 use Zsolt\Collections\Exceptions\NotFoundException;
-use Zsolt\Collections\Traits\ArrayListTrait;
 
 /**
  * Read only array list.

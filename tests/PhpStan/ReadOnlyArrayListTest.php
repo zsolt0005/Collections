@@ -3,7 +3,7 @@
 namespace Zsolt\Collections\Tests\PhpStan;
 
 use Zsolt\Collections\Exceptions\NotFoundException;
-use Zsolt\Collections\ReadOnlyArrayList;
+use Zsolt\Collections\List\ReadOnlyArrayList;
 
 /**
  * Test PHPStan type detection for generics.
