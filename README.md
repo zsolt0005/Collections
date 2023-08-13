@@ -109,9 +109,23 @@ $stack->pop(); // null
 ## TODO
  * Dictionary
    * ReadOnlyDictionary
-   * Dictionary: Dictionary
+   * Dictionary: ReadOnlyDictionary
  * Lists
    * Array functions
      * Map
      * Reduce
      * Filter
+
+ * Tests
+   * PhpUnit
+     * KeyValuePair
+     * Queue
+     * Stack
+     * ReadOnlyDictionary
+     * Dictionary
+   * PHPStan
+     * KeyValuePair
+     * Queue
+     * Stack
+     * ReadOnlyDictionary
+     * Dictionary
